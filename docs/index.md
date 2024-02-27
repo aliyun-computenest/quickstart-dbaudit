@@ -92,7 +92,7 @@
 
 ## 联系我们
 
-欢迎访问绿盟数据库审计官网（[https://www.nsfocus.com.cn/](https://www.nsfocus.com.cn/)）了解更多信息。
+欢迎访问绿盟科技官网（[https://www.nsfocus.com.cn/](https://www.nsfocus.com.cn/)）了解更多信息。
 
 绿盟科技智能客服（[https://user.nsfocus.com/visitor/outSideChat](https://user.nsfocus.com/visitor/outSideChat)）
 

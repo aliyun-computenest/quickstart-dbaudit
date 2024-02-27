@@ -21,12 +21,20 @@
 
 | 规格族 | vCPU与内存 | 系统盘 | 公网带宽 |
 | --- | --- | --- | --- |
-| ecs.g5.xlarge | 	通用型 g5，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
-| ecs.g5.2xlarge | 	通用型 g5，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
-| ecs.g6.xlarge | 	通用型 g6，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
-| ecs.g6.2xlarge | 	通用型 g6，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
-| ecs.g6e.xlarge | 	通用平衡增强型 g6e，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g7a.xlarge | AMD 通用型 g7a，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g7.xlarge | 通用型 g7，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g6.xlarge | 通用型 g6，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g6e.xlarge | 通用平衡增强型 g6e，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g6a.xlarge | AMD 通用型 g6a，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.t6-c1m4.xlarge | 突发性能实例 t6，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.e-c1m4.xlarge | ecs.e，4vCPU 16GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g7a.2xlarge | AMD 通用型 g7a，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g6.2xlarge | 通用型 g6，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g7.2xlarge | 通用型 g7，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
 | ecs.g6e.2xlarge | 通用平衡增强型 g6e，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.g6a.2xlarge | AMD 通用型 g6a，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.e-c1m4.2xlarge | ecs.e，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
+| ecs.t6-c1m4.2xlarge | 突发性能实例 t6，8vCPU 32GiB | ESSD云盘 200GiB PL1 | 固定带宽1Mbps |
 
 预估费用在创建实例时可实时看到。
 如需更多规格、其他服务（企业级支持服务等），请联系我们，服务热线：400-818-6868

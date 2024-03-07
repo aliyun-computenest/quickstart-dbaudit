@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计算巢是阿里云开放给企业应用服务商的服务管理平台。服务商能够在计算巢上发布私有化部署服务，为其客户提供云上软件一键部署的能力；同时也支持全托管模式的服务，赋能服务商托管其客户资源。">
+  <title>绿盟数据库审计服务实例部署文档 - Aliyun 计算巢 x Demo</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  
+
+  
+
+  
+  
+
+  
+    <script src="search/main.js"></script>
+  
+
+  
+
+  <script src="js/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="logo">
+          <img src="./img/logo-2x.png">
+        </div>
+        <div class="nav-list">
+          <ul>
+          
+              <li><a href="#_1">绿盟数据库审计服务实例部署文档</a></li>
+              
+                  <li><a href="#_2">概述</a></li>
+                  
+              
+                  <li><a href="#_3">计费说明</a></li>
+                  
+              
+                  <li><a href="#_4">部署架构</a></li>
+                  
+              
+                  <li><a href="#ram">RAM账号所需权限</a></li>
+                  
+              
+                  <li><a href="#_5">部署流程</a></li>
+                  
+                      <li class="li-h3"><a href="#_6">部署步骤</a></li>
+                  
+                      <li class="li-h3"><a href="#_7">部署参数说明</a></li>
+                  
+                      <li class="li-h3"><a href="#_8">验证结果</a></li>
+                  
+                      <li class="li-h3"><a href="#_9">使用文档</a></li>
+                  
+              
+                  <li><a href="#_10">问题排查</a></li>
+                  
+              
+                  <li><a href="#_11">联系我们</a></li>
+                  
+              
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content theme-github">
+      
+      <div class="content-inner">        
+        
+        <h1 id="_1">绿盟数据库审计服务实例部署文档</h1>
+<h2 id="_2">概述</h2>
+<p>数据库审计系统是一款通过对数据库网络流量的采集，基于数据库协议解析与还原技术的数据库安全审计系统。本系统实现对数据库所有访问行为的监控和审计、对其中的危险操作进行多种方式的告警、对数据库访问行为进行多维度的统计并进行图形化展现。</p>
+<h2 id="_3">计费说明</h2>
+<p>在计算巢上的费用主要涉及：</p>
+<ul>
+<li>所选vCPU与内存规格</li>
+<li>系统盘类型及容量</li>
+<li>公网带宽</li>
+</ul>
+<p>计费方式包括：</p>
+<ul>
+<li>按量付费（小时）</li>
+<li>包年包月</li>
+</ul>
+<p>目前提供如下实例：</p>
+<table>
+<thead>
+<tr>
+<th>规格族</th>
+<th>vCPU与内存</th>
+<th>系统盘</th>
+<th>公网带宽</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ecs.g7a.xlarge</td>
+<td>AMD 通用型 g7a，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g7.xlarge</td>
+<td>通用型 g7，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g6.xlarge</td>
+<td>通用型 g6，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g6e.xlarge</td>
+<td>通用平衡增强型 g6e，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g6a.xlarge</td>
+<td>AMD 通用型 g6a，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.t6-c1m4.xlarge</td>
+<td>突发性能实例 t6，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.e-c1m4.xlarge</td>
+<td>ecs.e，4vCPU 16GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g7a.2xlarge</td>
+<td>AMD 通用型 g7a，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g6.2xlarge</td>
+<td>通用型 g6，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g7.2xlarge</td>
+<td>通用型 g7，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g6e.2xlarge</td>
+<td>通用平衡增强型 g6e，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.g6a.2xlarge</td>
+<td>AMD 通用型 g6a，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.e-c1m4.2xlarge</td>
+<td>ecs.e，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+<tr>
+<td>ecs.t6-c1m4.2xlarge</td>
+<td>突发性能实例 t6，8vCPU 32GiB</td>
+<td>ESSD云盘 200GiB PL1</td>
+<td>固定带宽1Mbps</td>
+</tr>
+</tbody>
+</table>
+<p>预估费用在创建实例时可实时看到。
+如需更多规格、其他服务（企业级支持服务等），请联系我们，服务热线：400-818-6868</p>
+<h2 id="_4">部署架构</h2>
+<p><img alt="架构图" src="images/deploy_architecture.jpg" /></p>
+<h2 id="ram">RAM账号所需权限</h2>
+<p>服务需要对ECS、VPC等资源进行访问和创建操作，若您使用RAM用户创建服务实例，需要在创建服务实例前，对使用的RAM用户的账号添加相应资源的权限。添加RAM权限的详细操作，请参见<a href="https://help.aliyun.com/document_detail/121945.html">为RAM用户授权</a>。所需权限如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>权限策略名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AliyunECSFullAccess</td>
+<td>管理云服务器服务（ECS）的权限</td>
+</tr>
+<tr>
+<td>AliyunVPCFullAccess</td>
+<td>管理专有网络（VPC）的权限</td>
+</tr>
+<tr>
+<td>AliyunROSFullAccess</td>
+<td>管理资源编排服务（ROS）的权限</td>
+</tr>
+<tr>
+<td>AliyunComputeNestUserFullAccess</td>
+<td>管理计算巢服务（ComputeNest）的用户侧权限</td>
+</tr>
+<tr>
+<td>AliyunLogFullAccess</td>
+<td>管理日志服务（Log）的权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">部署流程</h2>
+<h3 id="_6">部署步骤</h3>
+<ol>
+<li>
+<p>在创建服务实例页面填写配置信息。
+<img alt="输入必填项" src="images/deploy_step_1.jpg" /></p>
+</li>
+<li>
+<p>配置信息填写完成后，点击下一步确认订单。
+<img alt="输入必填项" src="images/deploy_step_2.jpg" /></p>
+</li>
+<li>
+<p>确认配置信息是否正确，同意服务条款，最后点击立即创建。
+<img alt="输入必填项" src="images/deploy_step_3.jpg" /></p>
+</li>
+</ol>
+<h3 id="_7">部署参数说明</h3>
+<p>您在创建服务实例的过程中，需要配置服务实例信息。</p>
+<table>
+<thead>
+<tr>
+<th>参数组</th>
+<th>参数项</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地域</td>
+<td></td>
+<td>华南3（广州）</td>
+<td>选中服务实例的地域，建议就近选中，以获取更好的网络延时。</td>
+</tr>
+<tr>
+<td>付费类型配置</td>
+<td>付费类型</td>
+<td>按量付费</td>
+<td>根据实际情况填写。</td>
+</tr>
+<tr>
+<td>可用区配置</td>
+<td>可用区</td>
+<td>cn-guangzhou-a</td>
+<td>根据实际情况填写。</td>
+</tr>
+<tr>
+<td>ECS实例配置</td>
+<td>实例类型</td>
+<td>通用型 g6 ecs.g6.xlarge</td>
+<td>根据实际情况填写。</td>
+</tr>
+<tr>
+<td>SLS日志配置</td>
+<td>数据保存时间</td>
+<td>90</td>
+<td>默认数据保留为90天，可以根据实际情况填写。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">验证结果</h3>
+<ol>
+<li>查看服务实例。服务实例创建成功后，部署时间大约需要5分钟。部署完成后，页面上可以看到对应的服务实例。 </li>
+<li>进入到对应的服务实例后，可以在页面上获取到 web 的访问地址。
+<img alt="web访问地址" src="images/web_visit_url.jpg" /></li>
+</ol>
+<h3 id="_9">使用文档</h3>
+<p>请访问官网了解如何使用：<a href="https://www.nsfocus.com.cn/">使用文档</a></p>
+<h2 id="_10">问题排查</h2>
+<p>请访问<a href="https://www.aliyun.com">问题排查链接</a>获取帮助。</p>
+<h2 id="_11">联系我们</h2>
+<p>欢迎访问绿盟科技官网（<a href="https://www.nsfocus.com.cn/">https://www.nsfocus.com.cn/</a>）了解更多信息。</p>
+<p>绿盟科技智能客服（<a href="https://user.nsfocus.com/visitor/outSideChat">https://user.nsfocus.com/visitor/outSideChat</a>）</p>
+<p>服务热线：400-818-6868</p>
+<p>扫码关注微信公众号，技术博客、活动通知不容错过：</p>
+<p><img alt="微信公众号" src="images/wx.png" /></p>
+        
+      </div>
+
+      <div class="copyrights">© 2009-2022 Aliyun.com 版权所有</div>
+    </div>
+  </div>
+  
+  <!--
+  MkDocs version      : 1.5.3
+  Docs Build Date UTC : 2024-03-07 05:55:14.909925+00:00
+  -->
+</body>
+</html>
